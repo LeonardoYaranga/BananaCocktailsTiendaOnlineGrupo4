@@ -1,0 +1,409 @@
+body {
+    background-color: #fff;
+    font-family: 'Bahnschrift', Times, serif;
+    color: #333;
+}
+
+header {
+    background-image: url('../Images/Iconos/Coctel.jpg');
+    background-size: cover;
+    background-position: center 43%;
+    font-family: 'Monotype Corsiva', Times, serif;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 150%;
+}
+
+nav {
+    top: 250px;
+    width: 99.2%;
+    background-color: #333;
+    font-family: 'Bahnschrift SemiBold', Times, serif;
+    text-align: center;
+    border-radius: 10px;
+    border-top: 4px solid white;
+    font-size: 18px;
+}
+
+.navul {
+    padding: 3px;
+    list-style-type: none;
+}
+
+.navli {
+    display: inline-block;
+    margin-right: 47px;
+}
+
+.nava {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nava:hover {
+    color: #fabd50;
+}
+
+section {
+    border-top: 1px solid white;
+    border-radius: 10px;
+    background-color: #fff;
+
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid white;
+}
+
+footer img {
+    width: 55px;
+    margin: 0 40px;
+    padding: 1%;
+}
+
+h2 {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ACE3AF;
+    color: #333;
+    font-family: 'Lucida Calligraphy', Times, serif;
+    border-top: 3px solid white;
+}
+
+/*vod=35-95%
+ron=37.5-80%
+whisky=40-62%
+vino=10-15%
+tequila=37-50%
+gin o ginebra=37.5-50%
+
+*/
+#vodka,
+#ron,
+#whisky,
+#vino,
+#tequila,
+#gin {
+    background-color: #7fbe88;
+    transition: 1s;
+}
+
+#vodka:hover {
+    /* Gradiente representativo al grado de alcohol para vodka */
+    background-image: linear-gradient(45deg, #4CAF50 0%, #FFD700 15%,#FFD700 35%,#d49520 40%, #FFA500 50%, #FF4500 75%, #FF4500 100%);
+    transform: rotateY(360deg);
+}
+
+#vodka:hover::after {
+    content: "65% de alcohol"; 
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    padding-left: 10px; 
+    color: rgb(11, 33, 95);
+    font-size: 20px;
+    white-space: nowrap; 
+}
+
+#ron:hover {
+    background-image: linear-gradient(45deg, #4CAF50 0%,#FFD700 16%, #FFD700 37.5%, #FFA500 50%, #FFA500 80%, #FF4500 90%, #FF4500 100%);
+    transform: rotateY(360deg);
+}
+
+#ron:hover::after {
+    content: "58% de alcohol"; 
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    padding-left: 10px; 
+    color: rgb(11, 33, 95);
+    font-size: 20px;
+    white-space: nowrap;
+}
+#whisky:hover {
+    background-image: linear-gradient(45deg, #4CAF50 12%,#FFD700 15%,#FFD700 40%, #FFA500 51%, #FFA500 85%, #FF4500 90%, #FF4500 100%);
+    transform: rotateY(360deg);
+}
+
+#whisky:hover::after {
+    content: "50% de alcohol"; 
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    padding-left: 10px; 
+    color: rgb(11, 33, 95);
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+#vino:hover {
+    background-image: linear-gradient(45deg, #19ce1f 0%, #19ce1f 25%, #21b426 40%, #FFD700 50%, #FFD700 70%, #FFA500 80%, #FFA500 85%, #FF4500 100%);
+    transform: rotateY(360deg);
+}
+#vino:hover::after {
+    content: "12.5% de alcohol"; 
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    padding-left: 10px; 
+    color: rgb(11, 33, 95);
+    font-size: 20px;
+    white-space: nowrap;
+}
+#tequila:hover , #gin:hover{
+    background-image: linear-gradient(45deg, #19ce1f 0%, #21b626 20%, #FFD700 25%, #FFD700 50%, #FFD700 70%,#FFA500 80%, #FF4500 100%);
+    transform: rotateY(360deg);
+}
+#tequila:hover::after , #gin:hover::after{
+    content: "43% de alcohol"; 
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    padding-left: 10px; 
+    color: rgb(11, 33, 95);
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.wrap {
+    max-width: 1370px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: scroll;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    bottom: 6px;
+
+    border-radius: 20px;
+    right: 6px;
+    border: 3px solid #999999;
+    padding-top: 20px;
+}
+
+.tarjeta-rest {
+    flex: 1 0 auto;
+    margin: 0 1.2rem;
+    width: 300px;
+    background-repeat: no-repeat;
+    height: 380px;
+    border-radius: 20px;
+    padding: 1rem .5rem;
+    display: flex;
+    align-items: end;
+    max-width: 350px;
+}
+
+.tarjeta-rest:hover {
+    border: 3px solid orange;
+    color: white;
+    transform: translateY(-20px);
+    transition: 1s;
+    animation: rotate 0.65s 1;
+
+    position: relative;
+}
+
+.wrap-text_tarjeta-rest {
+    color: #fff;
+    padding: .5rem;
+    border-radius: 6px;
+    background: linear-gradient(to top, rgb(0 0 0 /.5), rgb(0 0 0 /.5));
+}
+
+.wrap-text_tarjeta-rest p {
+    color: #FFFFDA;
+
+}
+
+.cta-wrap_tarjeta-rest {
+    display: flex;
+    justify-content: space-between;
+}
+
+.precio_tarjeta-rest span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.cta_tarjeta-rest {
+    padding: .25 rem 1 rem;
+    border-radius: 4px;
+}
+
+.cta_tarjeta-rest a {
+    color: #fff;
+    font-weight: bold;
+}
+.cta_tarjeta-rest input {
+    background-color: #FFC300;
+    padding: .25rem 1rem;
+    border: #661818 1px solid;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    height: 22%; 
+}
+
+img {
+    width: 300px;
+    height: auto;
+}
+
+.logoAnimado {
+    animation: rotate 3s infinite;
+}
+
+.carritoAnimado {
+    animation: agrandarseCarrito 3s infinite;
+}
+
+.tarjetaAnimada {
+    animation: agrandarseTarjeta 8s infinite;
+}
+
+@keyframes agrandarseCarrito {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes agrandarseTarjeta {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    25% {
+        transform: rotateY(90deg);
+    }
+    50% {
+        transform: rotateY(180deg);
+    }
+    75% {
+        transform: rotateY(270deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+
+.text {
+    color: #fff;
+    font-family: 'Broadway', Times, serif;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+
+.text:hover {
+    background: linear-gradient(to top, rgb(0 0 0 /.5), rgb(0 0 0 /.5));
+    border-radius: 20%;
+    color: #F5CBB9;
+    padding: 5%;
+}
+
+aside {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #f1f1f1;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+aside a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: inline;
+    transition: 0.3s;
+}
+
+aside a:hover {
+    color: #f1f1f1;
+}
+
+aside .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 25px;
+    margin-left: 50px;
+    background-color: #FF9999;
+}
+
+/* Estilos para la imagen del carrito */
+#carritoImagen {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#carritoImagen:hover {
+    transform: scale(1.1);
+}
+
+.aside-content table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #D4F4DB;
+    font-family: 'Bahnschrift SemiBold', Times, serif;
+}
+
+.aside-content form input[type="submit"] {
+    background-color: #F8A666;
+    color: white;
+    padding: 20px;
+    margin-top: 7px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border: 1px solid black;
+}
+
+.aside-content {
+    padding: 20px;
+}
+
+#carritoContainer {
+    position: fixed;
+    top: 55px;
+    right: 40px;
+    z-index: 995;
+}

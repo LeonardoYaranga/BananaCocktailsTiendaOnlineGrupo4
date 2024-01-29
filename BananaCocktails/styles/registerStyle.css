@@ -1,0 +1,145 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url(../Images/Iconos/Coctel.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.contenedor {
+    position: relative;
+
+    width: 500px;
+    height: 550px;
+    border: 2px solid rgba(255, 255, 255, .6);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.contenedor h2 {
+    color: #fff;
+    font-size: 2.3rem;
+    text-align: center;
+
+}
+
+
+.inputContenedor {
+    position: relative;
+    margin: 30px 0;
+    width: 300px;
+    border-bottom: 2px solid #fff;
+    margin: 20px;
+}
+
+
+.inputContenedor label {
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-100%);
+    color: #fff;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .6s;
+    font-weight: bold;
+}
+
+
+input:focus~label,
+input:valid~label {
+    top: -5px;
+}
+
+
+.inputContenedor input {
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: - 35px 0 5px;
+    color: #fff;
+}
+
+
+.inputContenedor i {
+    position: relative;
+    color: black;
+    font-size: 1.6rem;
+    top: 19px;
+    right: 80px;
+}
+
+.olvidar {
+    margin: -15px 0 15px;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.olvidar label input {
+    margin: 3px;
+}
+
+.olvidar label a {
+    margin-left: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: .9em;
+}
+
+.olvidar label a:hover {
+    text-decoration: underline;
+}
+
+#buttonSubmit {
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#buttonSubmit:hover {
+    opacity: .9;
+}
+
+.registrar {
+    margin: 20px 0 10px;
+    font-size: .9em;
+    color: #fff;
+    justify-content: center;
+    text-align: center;
+}
+
+.registrar p a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.registrar p a:hover {
+    text-decoration: underline;
+}
