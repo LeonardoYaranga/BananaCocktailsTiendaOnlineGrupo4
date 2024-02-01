@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 ?>
 
 <!DOCTYPE html>
@@ -9,36 +9,14 @@ session_start();
   <meta charset="utf-8">
   <title>Pedidos Online | Banana's Cocktails</title>
   <link rel="stylesheet" type="text/css" href="./styles/indexStyle.css">
+  <link rel="stylesheet" type="text/css" href="./styles/paraCarrito.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="./scripts/carrito.js" async></script>
 </head>
 
-<?php
-
-// Inicializar el arreglo de productos seleccionados
-if (!isset($_SESSION['productos_seleccionados'])) {
-  $_SESSION['productos_seleccionados'] = [];
-}
-
-// Verificar si se ha enviado el formulario
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  if (isset($_POST['producto'], $_POST['precio'])) {
-    // Agregar el nuevo producto al arreglo
-    $_SESSION['productos_seleccionados'][] = [
-      'producto' => $_POST['producto'],
-      'precio' => $_POST['precio']
-    ];
-  } elseif (isset($_POST['borrar_ultimo'])) {
-    // Borrar el último producto si se envió el formulario para borrar
-    array_pop($_SESSION['productos_seleccionados']);
-  } elseif (isset($_POST['vaciar_lista'])) {
-    // Vaciar toda la lista si se envió el formulario para vaciar
-    $_SESSION['productos_seleccionados'] = [];
-  }
-}
-?>
-
 <body>
-
-
 
   <header>
 
@@ -69,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </td>
         <td id="carritoContainer" style="width:6%">
-          <img class="carritoAnimado" src="./Images/Iconos/CarritoCompra.png" alt="Imagen de Carrito de Compras" style="width: 120%;"
-            id="carritoImagen" onclick="openAside()">
+          <img class="carritoAnimado" src="./Images/Iconos/CarritoCompra.png" alt="Imagen de Carrito de Compras"
+            style="width: 120%;" id="carritoImagen" onclick="openAside()">
 
         </td>
       </tr>
@@ -90,64 +68,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </ul>
   </nav>
 
+  <!-- Mostrar productos seleccionados -->
+  <aside id="popup">
 
-  <!-- <section class="catalogo" -->
+    <button class="closebtn" onclick="closeAside()">Cerrar</button>
+    <section class="aside-content">
+      <!-- Carrito de Compras -->
+      <div class="carrito" id="carrito">
+        <div class="header-carrito">
+          <h2>Tu Carrito</h2>
+        </div>
 
-    <!-- Mostrar productos seleccionados -->
-    <aside id="popup">
+        <div class="carrito-items">
+          <!--Aquí se mostrarán los productos seleccionados-->
+        </div>
+        <div class="carrito-total">
+          <div class="fila">
+            <strong>Tu Total</strong>
+            <span class="carrito-precio-total">
+              $120.000,00
+            </span>
+          </div>
+          <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+        </div>
+      </div>
+    </section>
 
-      <button class="closebtn" onclick="closeAside()">Cerrar</button>
-      <section class="aside-content">
+    </section>
+  </aside>
 
-        <article class="inputBox" id="productos-seleccionados">
-          <label for="productos">Productos Seleccionados</label>
-          <table border=2>
-            <tr>
-              <th>
-                Producto
-              </th>
-              <th>
-                Precio
-              </th>
-            </tr>
-            <?php
-            // Iterar sobre los productos seleccionados y mostrarlos en la tabla
-            foreach ($_SESSION['productos_seleccionados'] as $producto) {
-              echo "<tr>";
-              echo "<td>{$producto['producto']}</td>";
-              echo "<td>{$producto['precio']} $</td>";
-              echo "</tr>";
-            }
-            ?>
-          </table>
 
-          
-        </article>
+  <section class="catalogo">
 
-        <!-- Formulario para finalizar la compra -->
-        <form action="./Formularios/factura.php" method="post" target=" _blank">
-          <?php
-          // Agregar campos ocultos para todos los productos seleccionados
-          foreach ($_SESSION['productos_seleccionados'] as $producto) {
-            echo '<input type="hidden" name="productos[]" value="' . $producto['producto'] . '">';
-            echo '<input type="hidden" name="precios[]" value="' . $producto['precio'] . '">';
-          }
-          ?>
-          <input type="submit" value="Finalizar Compra">
-        </form>
-
-        <!-- Formulario para borrar el último producto -->
-        <form action="index.php" method="post">
-          <input type="submit" name="borrar_ultimo" value="Borrar Último Producto">
-        </form>
-
-        <!-- Formulario para vaciar la lista -->
-        <form action="index.php" method="post">
-          <input type="submit" name="vaciar_lista" value="Vaciar Lista">
-        </form>
-      </section>
-    </aside>
-
+    <!-- Cargar productos a mostrar -->
     <?php
     $jsonData = file_get_contents('./Database/productos.json');
 
@@ -174,30 +127,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '</section>';
           }
 
-            // Abrir una nueva sección con la clase correspondiente
-            echo '<h2 id="' . strtolower($section) . '">' . $section . '</h2>';
-         // echo ' <h2 id=' . strtolower($section) . ' Ref>' . $section . '</h2> ';
-          echo '<section class="wrap" ' . $section . '">';
+          // Abrir una nueva sección con la clase correspondiente
+          echo '<h2 id="' . strtolower($section) . '" class="contenedor-items"' . '>' . $section . '</h2>';
+          echo '<section class="wrap ' . $section . '">';
 
           // Actualizar la variable de sección actual
           $seccionActual = $section;
         }
 
         // Imprimir el contenido del producto
-        echo '<article class="tarjeta-rest tarjetaAnimada" style="background: url(./Images/' . $section . '/' . $imagen . ') center; background-size: cover;">';
+        echo '<article class="tarjeta-rest tarjetaAnimada item img-item" id="'.'$nombre'.'" data-imagen-src="./Images/' . $section . '/' . $imagen . '" style="background: url(./Images/' . $section . '/' . $imagen . ') center; background-size: cover;">';
+        //echo '<article class="tarjeta-rest tarjetaAnimada" style="background: url(./Images/' . $section . '/' . $imagen . ') center; background-size: cover;">';
         echo '<section class="wrap-text_tarjeta-rest">';
-        echo '<h3>' . $nombre . '</h3>';
+        echo '<span class="titulo-item">' . $nombre . '</span>';
         echo '<p>' . $descripcion . '</p>';
         echo '<section class="cta-wrap_tarjeta-rest">';
         echo '<article class="precio_tarjeta-rest">';
-        echo '<span>' . $precio . '$</span>';
+        echo '<span class="precio-item" >' . $precio . '$</span>';
         echo '</article>';
         echo '<article class="cta_tarjeta-rest">';
-        echo '<form method="post">';
-        echo '<input type="hidden" name="producto" value="' . $nombre . '">';
-        echo '<input type="hidden" name="precio" value="' . $precio . '">';
-        echo '<input type="submit" value="Comprar">';
-        echo '</form>';
+        echo '<button class="boton-item" onclick="openAside()" >Agregar al Carrito</button>';
         echo '</article>';
         echo '</section>';
         echo '</section>';
@@ -211,35 +160,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     ?>
- <!-- </section> -->
 
-  <footer>
-    <img src="./Images/Iconos/instagram.png" alt="Instagram"
-      onclick="window.open('https://www.instagram.com/', '_blank')">
-    <img src="./Images/Iconos/facebook.png" alt="Facebook" onclick="window.open('https://www.facebook.com/', '_blank')">
-    <img src="./Images/Iconos/tiktok.png" alt="TikTok" onclick="window.open('https://www.tiktok.com/', '_blank')">
-    <p>&copy;2023 Banana's Cocktails</p>
-  </footer>
+    <footer>
+      <img src="./Images/Iconos/instagram.png" alt="Instagram"
+        onclick="window.open('https://www.instagram.com/', '_blank')">
+      <img src="./Images/Iconos/facebook.png" alt="Facebook"
+        onclick="window.open('https://www.facebook.com/', '_blank')">
+      <img src="./Images/Iconos/tiktok.png" alt="TikTok" onclick="window.open('https://www.tiktok.com/', '_blank')">
+      <p>&copy;2023 Banana's Cocktails</p>
+    </footer>
 
-  <script>
-    function openAside() {
-      var popup = document.getElementById("popup");
-      var carritoImagen = document.getElementById("carritoImagen");
+    <script>
+      function openAside() {
+        var popup = document.getElementById("popup");
+        var carritoImagen = document.getElementById("carritoImagen");
 
-      popup.style.width = "30%";
+        popup.style.width = "30%";
 
-      carritoImagen.style.display = "none";
-    }
+        carritoImagen.style.display = "none";
+      }
 
-    function closeAside() {
-      var popup = document.getElementById("popup");
-      var carritoImagen = document.getElementById("carritoImagen");
+      function closeAside() {
+        var popup = document.getElementById("popup");
+        var carritoImagen = document.getElementById("carritoImagen");
 
-      popup.style.width = "0%";
+        popup.style.width = "0%";
 
-      carritoImagen.style.display = "block";
-    }
-  </script>
+        carritoImagen.style.display = "block";
+      }
+    </script>
 
 </body>
 
