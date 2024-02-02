@@ -188,6 +188,7 @@
 
         carritoImagen.style.display = "block";
       }
+
     </script>
 
 </body>

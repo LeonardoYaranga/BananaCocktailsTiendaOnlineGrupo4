@@ -151,17 +151,22 @@ img {
 .table-productos {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 10px; /* Añade un margen superior para separar la tabla de otros elementos */
+}
+
+.table-productos th, .table-productos td {
+    padding: 5px 0px;
+    text-align: center; /* Centra el texto en las celdas */
 }
 
 .table-productos th {
     background-color: #333;
     color: white;
-    padding: 10px;
 }
 
 .table-productos td {
-    padding: 10px;
     background-color: #fff;
+    border: 1px solid #ddd; /* Añade bordes a las celdas */
 }
 
 .table-productos tr:nth-child(even) {
@@ -170,6 +175,18 @@ img {
 
 .table-productos tr:hover {
     background-color: #F8A666;
+}
+
+/* Estilo para la fila del Total General */
+.table-productos .total-general {
+    background-color: #F8A666;
+    color: orange;
+    font-weight: bold;
+}
+
+textarea {
+    width: 20px !important;
+    resize: none;
 }
 
 

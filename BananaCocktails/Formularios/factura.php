@@ -1,20 +1,5 @@
 <?php
 session_start();
-
-// Verificar si se ha enviado un formulario de compra
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['producto'], $_POST['precio'])) {
-    $producto = $_POST['producto'];
-    $precio = floatval($_POST['precio']);
-
-    // Inicializar la sesión del carrito si no existe
-    if (!isset($_SESSION['carrito'])) {
-        $_SESSION['carrito'] = [];
-    }
-
-    // Agregar el producto al carrito
-    $_SESSION['carrito'][] = ['producto' => $producto, 'precio' => $precio];
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['producto'], $_POST['p
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../styles/facturaStyle.css">
+    <script src="./scripts/carrito.js" async></script>
 
 </head>
 
@@ -77,28 +63,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['producto'], $_POST['p
 
 
             <article class="inputBox">
+                <center>
                 <label for="productos">Productos</label>
                 <table border=2 class="table-productos">
                     <tr>
                         <th>Producto</th>
-                        <th>Precio</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad</th>
+                        <th>Total Individual</th>
                     </tr>
                     <?php
+                    $totalGeneral = 0; // Variable para almacenar el total general
+                    
                     // Mostrar productos seleccionados
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'], $_POST['precios'])) {
-                        foreach ($_POST['productos'] as $index => $producto) {
+                    if (isset($_GET['productos']) && !empty($_GET['productos'])) {
+                        $productos = json_decode($_GET['productos'], true);
+
+                        foreach ($productos as $producto) {
                             echo "<tr>";
-                            echo "<td>{$producto}</td>";
-                            echo "<td>{$_POST['precios'][$index]} $</td>";
-                            // Campos ocultos para cada producto y precio con input para que se recuperar datos
-                            echo "<input type='hidden' name='productos[]' value='{$producto}'>";
-                            echo "<input type='hidden' name='precios[]' value='{$_POST['precios'][$index]}'>";
+                            echo "<td>{$producto['nombre']}</td>";
+                            echo "<td>{$producto['precio']}</td>";
+                            echo "<td>{$producto['cantidad']}</td>";
+
+                            // Calcular el total individual y actualizar el total general
+                            $totalIndividual = floatval(str_replace('$', '', $producto['precio'])) * intval($producto['cantidad']);
+                            $totalGeneral += $totalIndividual;
+
+                            echo "<td>{$totalIndividual} $</td>";
+                            // Campos ocultos para cada producto, precio y cantidad con input para que se recuperen los datos
+                            echo "<input type='hidden' name='productos[]' value='{$producto['nombre']}'>";
+                            echo "<input type='hidden' name='precios[]' value='{$producto['precio']}'>";
+                            echo "<input type='hidden' name='cantidades[]' value='{$producto['cantidad']}'>";
+                            echo "<input type='hidden' name='totales[]' value='{$totalIndividual}'>";
                             echo "</tr>";
                         }
+
+                        // Mostrar la fila del total general
+                        echo '<tr class="total-general">';
+                        echo "<td colspan='3'><strong>Total General</strong></td>";
+                        echo "<td><strong>{$totalGeneral} $</strong></td>";
+                        echo "</tr>";
+
                     }
                     ?>
                 </table>
+                 </center>
             </article>
+
 
             <article class="inputBox">
                 <label for="direccion"> Dirección </label>

@@ -54,21 +54,28 @@
         <table border=2>
             <tr>
                 <th>Producto</th>
-                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total Individual</th>
             </tr>
             <?php
             // Inicializar el total
-            $total = 0;
+            $totalGeneral = 0;
 
             // Mostrar productos seleccionados
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'], $_POST['precios'])) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'], $_POST['precios'], $_POST['cantidades'])) {
                 foreach ($_POST['productos'] as $index => $producto) {
                     echo "<tr>";
                     echo "<td>{$producto}</td>";
+                    echo "<td>{$_POST['cantidades'][$index]}</td>";
                     echo "<td>{$_POST['precios'][$index]} $</td>";
 
-                    // Sumar al total
-                    $total += $_POST['precios'][$index];
+                    // Calcular el total individual
+                    $totalIndividual = floatval($_POST['cantidades'][$index]) * floatval($_POST['precios'][$index]);
+                    echo "<td>{$totalIndividual} $</td>";
+
+                    // Sumar al total general
+                    $totalGeneral += $totalIndividual;
 
                     echo "</tr>";
                 }
@@ -77,8 +84,8 @@
             // Mostrar la fila del total después del bucle
             echo "<tr>";
             $color = 'lightgray';
-            echo "<td style='background-color: $color;'>Total</td>";
-            echo "<td style='background-color: $color;'>{$total} $</td>";
+            echo "<td colspan='3' style='background-color: $color; text-align: right;'>Total General</td>";
+            echo "<td style='background-color: $color;'>{$totalGeneral} $</td>";
             echo "</tr>";
             ?>
         </table>
