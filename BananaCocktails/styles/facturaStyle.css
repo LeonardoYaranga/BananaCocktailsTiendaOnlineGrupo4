@@ -184,11 +184,6 @@ img {
     font-weight: bold;
 }
 
-textarea {
-    width: 20px !important;
-    resize: none;
-}
-
 
 @media only screen and (max-height: 900px) and (max-width: 1000px) {
     header {

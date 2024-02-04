@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../styles/loginStyle.css">
   <title>Login</title>
- 
+  <script src="../scripts/validacion.js" async></script>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
          
           <article class="inputContenedor">
             <i class="fas fa-envelope"></i>
-            <input type="email" name="email" id="email" maxlength="100" required>
+            <input type="email" name="email" id="email" maxlength="100" oninput="validarCampo(this)" required>
             <label for="usuario">Email</label>
           </article>
           <article class="inputContenedor">
@@ -49,7 +49,7 @@
           </article>
 
           <div>
-          <input name="buttonSubmit" id="buttonSubmit" type="submit" value="Acceder">
+          <input name="loginButton" id="loginButton" type="submit" value="Acceder">
           <article class="registrar">
             <p>¿No tienes cuenta?
               <a href="./register.php">Registrate</a>
@@ -59,12 +59,7 @@
 
         </form>
 
-      
-
       </article>
-
-
-
 
     </article>
   </section>

@@ -68,7 +68,7 @@
                     echo "<tr>";
                     echo "<td>{$producto}</td>";
                     echo "<td>{$_POST['cantidades'][$index]}</td>";
-                    echo "<td>{$_POST['precios'][$index]} $</td>";
+                    echo "<td>{$_POST['precios'][$index]}</td>";
 
                     // Calcular el total individual
                     $totalIndividual = floatval($_POST['cantidades'][$index]) * floatval($_POST['precios'][$index]);

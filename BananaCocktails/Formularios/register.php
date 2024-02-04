@@ -7,10 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/loginStyle.css">
+  <link rel="stylesheet" href="../styles/registerStyle.css">
   <meta charset="UTF-8">
   <title>Register</title>
-  
+  <script src="../scripts/validacion.js" async></script>
+
 </head>
 
 <body>
@@ -20,52 +21,81 @@
       <article class="formulario">
 
         <form method="post">
-          <?php
-include('controlador.php');
-          ?>
           <h2>Registrate</h2>
           <article class="inputContenedor">
             <i class="fas fa-user"></i>
-            <input type="text" name="nombreRegister" id="nombreRegister" pattern="[A-Za-z]+" maxlength="100" required>
+            <input type="text" name="name" id="registerName" pattern="[A-Za-z]+" maxlength="100"
+              onkeypress="validarSoloLetras(event)" oninput="validarCampo(this)" required>
             <label for="nombreRegister">Nombre</label>
           </article>
           <article class="inputContenedor">
             <i class="fas fa-user"></i>
-            <input type="text" name="apellido" id="apellido" pattern="[A-Za-z]+" maxlength="100" required>
+            <input type="text" name="surname" id="registerSurname" pattern="[A-Za-z]+" maxlength="100"
+              onkeypress="validarSoloLetras(event)" oninput="validarCampo(this)" required>
             <label for="apellido">Apellido</label>
           </article>
           <article class="inputContenedor">
-            <input type="date" name="fechaNacimiento" id="fechaNacimiento" required>
-            <label for="fechaNacimiento">Fecha de nacimiento</label>
+            <i class="fas fa-calendar-alt"></i>
+            <input type="date" name="dateOfBirth" id="dateOfBirth" required>
+            <label for="dateOfBirth">Fecha de nacimiento</label>
           </article>
           <article class="inputContenedor">
             <i class="fas fa-envelope"></i>
-            <input type="email" name="emailRegister" id="emailRegister" required>
+            <input type="email" name="email" id="emailRegister" oninput="validarCampo(this)" required>
             <label for="usuario">Email</label>
           </article>
           <article class="inputContenedor">
             <i class="fas fa-lock"></i>
-            <input type="password" name="passwordRegister" id="password" required>
+            <input type="password" name="password" id="passwordRegister" required>
             <label for="password">Contraseña</label>
           </article>
 
           <article class="registrar">
-            <input name="buttonRegister" id="buttonRegister" type="submit" value="Acceder">
+            <input name="buttonRegister" id="buttonRegister" type="submit" value="Registrarse">
           </article>
       </article>
 
       </form>
 
-
-
     </article>
-
-
-
-
     </article>
   </section>
+
 
 </body>
 
 </html>
+
+
+<?php
+include('abrir_conexion.php');
+$name = "";
+$surname = "";
+$dateOfBirth = "";
+$email = "";
+$password = "";
+
+if (isset($_POST['buttonRegister'])) {
+  $name = $_POST['name'];
+  $surname = $_POST['surname'];
+  $dateOfBirth = $_POST['dateOfBirth'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  if ($name == "" || $surname == "" || $dateOfBirth == "" || $email == "" || $password == "") {
+    
+  } else {
+    $query = "INSERT INTO user (nameU, surnameU, dateOfBirthU, emailU, passwordU) VALUES ('$name', '$surname', '$dateOfBirth', '$email', '$password')";
+    $result = mysqli_query($conexion, $query);
+    if ($result) {
+      echo "<script>alert('Usuario registrado con éxito')</script>";
+      header("Location: ./login.php");
+    } else {
+      echo "<script>alert('Error al registrar usuario')</script>";
+    }
+  }
+
+}
+
+
+?>
