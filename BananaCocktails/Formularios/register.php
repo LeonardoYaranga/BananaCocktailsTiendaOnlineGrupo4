@@ -18,6 +18,9 @@
 
   <section>
     <article class="contenedor">
+      <center> <img class="logoAnimado" src="../Images/Iconos/Logotipo.png" alt="Logotipo"
+          style="width:35%; background-color: #ffff; border-radius: 80px;">
+      </center>
       <article class="formulario">
 
         <form method="post">
@@ -83,7 +86,7 @@ if (isset($_POST['buttonRegister'])) {
   $password = $_POST['password'];
 
   if ($name == "" || $surname == "" || $dateOfBirth == "" || $email == "" || $password == "") {
-    
+
   } else {
     $query = "INSERT INTO user (nameU, surnameU, dateOfBirthU, emailU, passwordU) VALUES ('$name', '$surname', '$dateOfBirth', '$email', '$password')";
     $result = mysqli_query($conexion, $query);

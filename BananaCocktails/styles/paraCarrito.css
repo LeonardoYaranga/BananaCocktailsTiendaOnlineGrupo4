@@ -25,7 +25,8 @@
     background-color: #000;
     color: #fff;
     text-align: center;
-    padding: 30px 0;
+    
+    box-shadow: #000 0px 1px 5px;
 }
 .carrito .carrito-item{
     display: flex;

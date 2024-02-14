@@ -2,12 +2,10 @@
 function validarSoloLetras(event) {
     var input = event.target;
 
-    // Permitir el uso de la tecla 'backspace' (código 8) y 'espacio' (código 32)
     if (event.keyCode === 8 || event.keyCode === 32) {
         return;
     }
 
-    // Utilizar la expresión regular para validar solo letras
     if (input.type === "text" && !/^[a-zA-Z ]+$/.test(event.key)) {
         event.preventDefault();
     }
@@ -23,14 +21,11 @@ function validarSoloNumeros(event) {
 }
 
 function validarCedula(cedula) {
-    // Verificar que la cédula tenga 10 dígitos
     if (/^\d{10}$/.test(cedula)) {
         var total = 0;
 
-        // Obtener los primeros 9 dígitos de la cédula
         var digitos = cedula.substring(0, 9);
 
-        // Calcular la suma ponderada de los dígitos
         for (var i = 0; i < digitos.length; i++) {
             var digito = parseInt(digitos[i]);
             digito = (i % 2 === 0) ? digito * 2 : digito;
@@ -42,13 +37,10 @@ function validarCedula(cedula) {
             total += digito;
         }
 
-        // Calcular el dígito verificador esperado
         var verificadorEsperado = (Math.ceil(total / 10) * 10) - total;
 
-        // Obtener el último dígito de la cédula
         var ultimoDigito = parseInt(cedula[9]);
 
-        // Validar el dígito verificador
         return verificadorEsperado === ultimoDigito;
     }
 
@@ -127,7 +119,7 @@ function validarCelular(numero) {
 
 //Enfocado en la parte de register.php
 
-document.getElementById('fechaNacimiento').addEventListener('blur', function () {
+document.getElementById('dateOfBirth').addEventListener('blur', function () {
     // Obtén el valor ingresado por el usuario
     var inputDate = this.value;
 
@@ -139,10 +131,15 @@ document.getElementById('fechaNacimiento').addEventListener('blur', function () 
         // Obtiene el año de la fecha de nacimiento
         var year = fechaNacimiento.getFullYear();
 
-        // Verifica si el año es mayor o igual a 1900
-        if (year < 1900) {
+        // Verifica si el año es mayor o igual a 
+        if (year < 1924) {
             // Muestra un mensaje de error si la fecha de nacimiento es anterior a 1900
-            alert('La fecha de nacimiento debe ser posterior a 1900.');
+            alert('La fecha de nacimiento debe ser posterior a 1924.');
+            this.value = '';  // Limpia el campo si la fecha no es válida
+        }
+        if(year>2005)
+        {
+            alert('Debe ser mayor de edad para registrarse.');
             this.value = '';  // Limpia el campo si la fecha no es válida
         }
     }

@@ -8,12 +8,14 @@
 <head>
   <meta charset="utf-8">
   <title>Pedidos Online | Banana's Cocktails</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="./styles/indexStyle.css">
   <link rel="stylesheet" type="text/css" href="./styles/paraCarrito.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="./scripts/carrito.js" async></script>
+  <script src="./scripts/nav.js" async></script>
 </head>
 
 <body>
@@ -23,23 +25,23 @@
     <table>
 
       <tr>
-        <td style="width:6%">
+        <td style="width:5%">
           <img class="logoAnimado" src="./Images/Iconos/Logotipo.png" alt="Logotipo"
-            style="width:220%; background-color: #ffff; border-radius: 80px;">
+            style="width:250%; background-color: #ffff; border-radius: 80px;">
         </td>
-        <td style="width:30%">
-          <a href=" #" class="text">Inicio</a>
+        <td style="width:29%">
+          <a href=" ./Inicio/inicioL.html" class="text">Inicio</a>
         </td>
         <td style="text-align: center; width:30%">
           <h1>Banana's Cocktails</h1>
           <p><em>¡Cócteles exclusivos a un clic de distancia!</em></p>
         </td>
-        <td style="width:20%">
+        <td style=" width:20%">
 
           <?php
           if (!empty($_GET["name"])) {
             $nameUser = $_GET["name"];
-            echo '<h3>Hola ' . $nameUser . '</h3>';
+            echo '<h3 class="helloUser">Hola ' . $nameUser . '</h3>';
           } else {
             echo '<a href="./Formularios/login.php" class="text">Iniciar sesión</a>';
           }
@@ -58,10 +60,10 @@
   <nav class="navul">
     <ul>
       <strong>
-        <li class="navli"><a href="#vodka" class="nava">Vodka</a></li>
+        <li class="navli"><a href="#whisky" class="nava">Whisky</a></li>
         <li class="navli"><a href="#ron" class="nava">Ron</a></li>
         <li class="navli"><a href="#tequila" class="nava">Tequila</a></li>
-        <li class="navli"><a href="#whisky" class="nava">Whisky</a></li>
+        <li class="navli"><a href="#vodka" class="nava">Vodka</a></li>
         <li class="navli"><a href="#gin" class="nava">Gin</a></li>
         <li class="navli"><a href="#vino" class="nava">Vino</a></li>
       </strong>
@@ -72,11 +74,11 @@
   <aside id="popup">
 
     <button class="closebtn" onclick="closeAside()">Cerrar</button>
-    <section class="aside-content">
+    <div class="aside-content">
       <!-- Carrito de Compras -->
       <div class="carrito" id="carrito">
         <div class="header-carrito">
-          <h2>Tu Carrito</h2>
+          <h3>Tu Carrito</h3>
         </div>
 
         <div class="carrito-items">
@@ -92,9 +94,8 @@
           <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
         </div>
       </div>
-    </section>
+        </div>
 
-    </section>
   </aside>
 
 
@@ -134,23 +135,50 @@
           // Actualizar la variable de sección actual
           $seccionActual = $section;
         }
+        ?>
 
-        // Imprimir el contenido del producto
-        echo '<article class="tarjeta-rest tarjetaAnimada item img-item" id="'.'$nombre'.'" data-imagen-src="./Images/' . $section . '/' . $imagen . '" style="background: url(./Images/' . $section . '/' . $imagen . ') center; background-size: cover;">';
-        //echo '<article class="tarjeta-rest tarjetaAnimada" style="background: url(./Images/' . $section . '/' . $imagen . ') center; background-size: cover;">';
-        echo '<section class="wrap-text_tarjeta-rest">';
-        echo '<span class="titulo-item">' . $nombre . '</span>';
-        echo '<p>' . $descripcion . '</p>';
-        echo '<section class="cta-wrap_tarjeta-rest">';
-        echo '<article class="precio_tarjeta-rest">';
-        echo '<span class="precio-item" >' . $precio . '$</span>';
-        echo '</article>';
-        echo '<article class="cta_tarjeta-rest">';
-        echo '<button class="boton-item" onclick="openAside()" >Agregar al Carrito</button>';
-        echo '</article>';
-        echo '</section>';
-        echo '</section>';
-        echo '</article>';
+<!--Imprimir el contenido del producto-->
+<article class="tarjeta tarjetaAnimada item">
+          <section class="face front">
+            <img src="./Images/<?php echo $section; ?>/<?php echo $imagen; ?>" alt="<?php echo $nombre; ?>"
+              class="img-item">
+
+            <section class="wrap-text_tarjeta">
+              <article class="precio_tarjeta">
+                <span class="precio-item">
+                  <?php echo $precio; ?>$
+                </span>
+              </article>
+              <span class="titulo-item">
+                <?php echo $nombre; ?>
+              </span>
+
+            </section>
+
+          </section>
+          <section class="face back">
+            <section class="wrap-text_tarjeta">
+              <span class="titulo-item">
+                <?php echo $nombre; ?>
+              </span>
+              <p>
+                <?php echo $descripcion; ?>
+              </p>
+              <section class="cta-wrap_tarjeta">
+                <article class="precio_tarjeta">
+                  <span class="precio-item">
+                    <?php echo $precio; ?>$
+                  </span>
+                </article>
+                <article class="cta_tarjeta">
+                  <button class="boton-item" onclick="openAside()">Agregar al Carrito</button>
+                </article>
+              </section>
+            </section>
+          </section>
+        </article>
+
+        <?php
       }
 
       // Cerrar la última sección (si existe)
@@ -171,7 +199,7 @@
     </footer>
 
     <script>
-      function openAside() {
+    function openAside() {
         var popup = document.getElementById("popup");
         var carritoImagen = document.getElementById("carritoImagen");
 

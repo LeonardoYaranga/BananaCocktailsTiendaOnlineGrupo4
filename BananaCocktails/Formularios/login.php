@@ -7,10 +7,10 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../styles/loginStyle.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../styles/loginStyle.css">
   <title>Login</title>
   <script src="../scripts/validacion.js" async></script>
 </head>
@@ -22,12 +22,18 @@
       <article class="formulario">
 
         <form method="post">
-        <?php
+          <?php
           include('controlador.php');
           ?>
 
+          <center>
+
+            <img class="logoAnimado" src="../Images/Iconos/Logotipo.png" alt="Logotipo"
+              style="width:35%; background-color: #ffff; border-radius: 80px;">
+          </center>
+
           <h2>Inicio de sesión</h2>
-         
+
           <article class="inputContenedor">
             <i class="fas fa-envelope"></i>
             <input type="email" name="email" id="email" maxlength="100" oninput="validarCampo(this)" required>
@@ -48,14 +54,14 @@
             </label>
           </article>
 
-          <div>
-          <input name="loginButton" id="loginButton" type="submit" value="Acceder">
-          <article class="registrar">
-            <p>¿No tienes cuenta?
-              <a href="./register.php">Registrate</a>
-            </p>
-          </article>
-        </div>
+          <div class="sectionAccess">
+            <input name="loginButton" id="loginButton" type="submit" value="Acceder">
+            <article class="registrar">
+              <p>¿No tienes cuenta?
+                <a href="./register.php">Registrate</a>
+              </p>
+            </article>
+          </div>
 
         </form>
 

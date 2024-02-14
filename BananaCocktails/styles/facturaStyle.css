@@ -1,12 +1,12 @@
+/*Selector Universal*/
 * {
-    font-family: 'Lucida Calligraphy', Times, serif;
+    font-family: 'Century Gothic', Arial, serif;
 }
 
 body {
     max-width: 800px;
-    background: url(../Images/Iconos/Coctel3.jpg);
-    background-position: left;
-    background-size: contain;
+    background: url(../Images/Iconos/CoctelNoche1.png);
+    background-size: cover;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
@@ -18,34 +18,27 @@ header {
     background-color: #333;
     border-radius: 20px;
     min-height: 50px;
-    width: auto;
-    height: 200px;
-    opacity: 70%;
+    width: 95%;
+    height: 90px;
     padding: 0cm;
+    margin: 35px;
 }
 
 header h1 {
     text-align: center;
-    padding: 4rem;
-    font-size: 300%;
-    
-    text-shadow: 10px 8px 5px black;
-
-}
-
-section {
-    background-color: #ACE3AF;
-    border-top: 3px solid white;
-    width: 100%;
-
+    padding: 1rem;
+    font-size: 250%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
 }
 
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 20px;
-    border-top: 1px solid white;
+    padding: 10px;
+    width: 102%;
+    border-top: 1px solid black;
+    border-radius: 20px;
 }
 
 footer img {
@@ -56,10 +49,13 @@ footer img {
 
 .container {
     max-width: 750px;
-    background: #ACE3AF;
+    background: #E7D1C1;
     width: 100%;
     padding: 25px 25px;
-    border-radius: 5px;
+    border-radius: 10px;
+    margin: 20px;
+    opacity: 90%;
+    font-size: 120%;
 }
 
 .container form {
@@ -70,12 +66,13 @@ footer img {
 }
 
 form label {
-    font-size: 25px;
+    font-size: 20px;
 }
 
+/*Selector descendente*/
 form .inputBox {
     margin: 20px 0 12px 0;
-    width: calc(100%/2 - 20px);
+    width: calc(100%/2 - 50px);
 }
 
 .container .inputBox input,
@@ -84,7 +81,7 @@ textarea {
     min-width: 100%;
     min-height: 20%;
     max-height: 150px;
-    height: 45px;
+    height: 40px;
     width: 100%;
     outline: none;
     border-radius: 15px;
@@ -94,6 +91,7 @@ textarea {
     border-bottom-width: 2px;
 }
 
+/*VALIDACION con PSEUDO-CLASES para formularios*/
 .inputBox input:required {
     border: 2px solid blue;
 }
@@ -125,56 +123,48 @@ form .button button {
     height: 200%;
     width: 355%;
     outline: none;
-    color: white;
-    font-size: 20px;
+    color: black;
+    font-size: 23px;
     font-weight: 500;
     border: none;
-    background: #F8A666;
+    background: #FFB32D;
     border-radius: 5px;
     letter-spacing: 1px;
 }
 
 form .button button:hover {
     background-color: blueviolet;
+    color:white;
 }
 
-aside {
-    background-color: blue;
-    float: right;
-    width: 100%;
-}
-
-img {
-    width: 50%;
-}
-
+/*TABLA DE PRODUCTOS*/
 .table-productos {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px; /* Añade un margen superior para separar la tabla de otros elementos */
+    margin-top: 10px;
 }
 
-.table-productos th, .table-productos td {
-    padding: 5px 0px;
-    text-align: center; /* Centra el texto en las celdas */
+.table-productos th,
+.table-productos td {
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 95%;
 }
 
 .table-productos th {
     background-color: #333;
     color: white;
+    font-size: 85%;
 }
 
 .table-productos td {
     background-color: #fff;
-    border: 1px solid #ddd; /* Añade bordes a las celdas */
+    border: 1px solid #ddd;
+    font-size: 80%;
 }
 
 .table-productos tr:nth-child(even) {
     background-color: #f2f2f2;
-}
-
-.table-productos tr:hover {
-    background-color: #F8A666;
 }
 
 /* Estilo para la fila del Total General */
@@ -185,6 +175,7 @@ img {
 }
 
 
+/*Media Queries para diseño responsivo*/
 @media only screen and (max-height: 900px) and (max-width: 1000px) {
     header {
         align-content: center;
@@ -194,7 +185,6 @@ img {
         min-height: 50px;
         width: 100%;
         height: 200px;
-        opacity: 70%;
         padding: 0cm;
 
     }

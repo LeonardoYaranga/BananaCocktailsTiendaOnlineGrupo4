@@ -1,5 +1,5 @@
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Bahnschrift', sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -10,23 +10,32 @@ section {
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    background: url(../Images/Iconos/Coctel.jpg) no-repeat;
+    background: url(../Images/Iconos/Coctel.png) repeat-y;
     background-position: center;
     background-size: cover;
+
 }
 
+/*FORMULARIO*/
 .contenedor {
     position: relative;
-
-    width: 500px;
-    height: 650px;
-    border: 2px solid rgba(255, 255, 255, .6);
+    max-width: 600px;
+    height: 800px;
+    border: 4px solid rgba(238, 24, 24, 0.6);
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
 
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+
+    padding: 20px;
+    
+    outline: 3px solid rgb(224, 114, 11);
+  
+    margin: 50px auto;
+    flex-grow: 1;
 
 }
 
@@ -34,19 +43,33 @@ section {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
+    flex: 1;
+    order: 5;
+}
+
+.logoAnimado {
+    flex: 1;
+    display: flex;
+    padding: 10px;
+    min-width: 150px;
+    max-width: 200px;
+    order: 2;
 }
 
 .contenedor h2 {
-    color: #fff;
-    font-size: 2.3rem;
+    color: white;
+    font-weight: bold;
+    font-size: 2.4rem;
     text-align: center;
 
 }
 
-
+/*INPUTS*/
 .inputContenedor {
     position: relative;
     margin: 30px 0;
@@ -55,14 +78,13 @@ section {
     margin: 20px;
 }
 
-
 .inputContenedor label {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 4px;
     transform: translateY(-60%);
-    color: #fff;
-    font-size: 1rem;
+    color: white;
+    font-size: 1.3rem;
     pointer-events: none;
     transition: .6s;
     font-weight: bold;
@@ -74,6 +96,21 @@ input:valid~label {
     top: -5px;
 }
 
+.inputContenedor input:invalid {
+    border-bottom: 3px solid red;
+    border-radius: 20px;
+}
+
+.inputContenedor input:valid {
+    border-bottom: 2px solid green;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.inputContenedor input:out-of-range {
+    border-bottom: 2px solid orange;
+    border-radius: 20px;
+}
 
 .inputContenedor input {
     width: 100%;
@@ -83,7 +120,7 @@ input:valid~label {
     outline: none;
     font-size: 1rem;
     padding: - 35px 0 5px;
-    color: #fff;
+    color: white;
 }
 
 
@@ -92,7 +129,7 @@ input:valid~label {
     color: black;
     font-size: 1.6rem;
     top: 19px;
-    right: 80px;
+    right: 60px;
 }
 
 .olvidar {
@@ -123,7 +160,9 @@ input:valid~label {
     width: 100%;
     height: 45px;
     border-radius: 40px;
-    background: #fff;
+    border: 4px solid rgba(238, 24, 24, 0.6);
+    backdrop-filter: blur(15px);
+
     border: none;
     outline: none;
     cursor: pointer;

@@ -98,7 +98,7 @@ function agregarAlCarritoClicked(event){
     var item = button.parentElement;
     var titulo = item.getElementsByClassName('titulo-item')[0].innerText;
     var precio = item.getElementsByClassName('precio-item')[0].innerText;
-    var imagenSrc = item.getElementsByClassName('img-item')[0].src;
+   
     //var imagenSrc = item.dataset.imagenSrc; // Accede al atributo de datos
     console.log(imagenSrc);
 
@@ -112,14 +112,15 @@ function agregarAlCarritoClicked(event){
 function agregarAlCarritoClicked(event) {
     var button = event.target;
     var item = button.closest('.item'); // Busca el elemento padre con la clase 'item'
+    
+    // Obtener datos de la tarjeta
     var titulo = item.querySelector('.titulo-item').innerText;
     var precio = item.querySelector('.precio-item').innerText;
-    var imagenSrc = item.dataset.imagenSrc;
+    var imagenSrc = item.querySelector('.img-item').src;
 
     agregarItemAlCarrito(titulo, precio, imagenSrc);
     hacerVisibleCarrito();
 }
-
 
 
 //Funcion que hace visible el carrito
@@ -129,9 +130,14 @@ function hacerVisibleCarrito() {
     carrito.style.marginRight = '0';
     carrito.style.opacity = '1';
 
-    var items = document.getElementsByClassName('contenedor-items')[0];
-    items.style.width = '60%';
+    // Encuentra el contenedor de la sección actual
+    var seccionActual = document.querySelector('.wrap.vodka'); 
+
+    if (seccionActual) {
+        seccionActual.style.width = '60%';
+    }
 }
+
 
 //Funciòn que agrega un item al carrito
 function agregarItemAlCarrito(titulo, precio, imagenSrc) {
@@ -254,10 +260,4 @@ function actualizarTotalCarrito() {
     document.getElementsByClassName('carrito-precio-total')[0].innerText = '$' + total.toLocaleString("es") + ",00";
 
 }
-
-
-
-
-
-
 

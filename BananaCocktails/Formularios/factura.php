@@ -23,8 +23,8 @@ session_start();
 
     <section class="container">
 
-        <p>Para realizar una compra, por favor llena el siguiente formulario con todos tus datos y nos contactaremos
-            con usted a la brevedad posible para confirmarla.
+        <p>Para realizar una compra, por favor llene el siguiente formulario con todos sus datos y nos contactaremos
+            con usted.
         </p>
 
         <form action="../Formularios/recuperarFactura.php" method="post" target="_blank">
@@ -42,7 +42,7 @@ session_start();
             </article>
 
             <article class="inputBox">
-                <label for="cedula">Numero de cedula</label>
+                <label for="cedula">Numero de cédula</label>
                 <input id="cedula" name="cedula" placeholder="Ingresa tu número de cedula" minlength="10"
                     pattern="[0-9]{10}" onkeypress="validarSoloNumeros(event)" oninput="validarCedulaInput(this)"
                     required />

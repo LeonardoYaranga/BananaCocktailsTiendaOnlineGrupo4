@@ -1,5 +1,5 @@
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Bahnschrift', sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -10,84 +10,90 @@ section {
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    background: url(../Images/Iconos/Bartender.jpg) no-repeat;
+    background: url(../Images/Iconos/Bartender.png) no-repeat;
     background-position: center;
     background-size: cover;
 }
 
+
+/*FORMULARIO*/
+/*FILTRO BLUR al contenedor de un FORMULARIO*/
 .contenedor {
-
     position: relative;
-
-    width: 90%;
-    height:90%;
-    border: 2px solid rgba(255, 255, 255, .6);
+    max-width: 500px;
+    height: 650px;
+    border: 4px solid rgba(238, 24, 24, 0.6);
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
 
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: a;
+
+    outline: 3px solid rgb(224, 114, 11);
+    padding: 20px;
+
+    outline: 3px solid rgb(224, 114, 11);
+
+    margin: 50px auto;
 }
 
-.formulario {
+.formulario form {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
-
 }
 
 .contenedor h2 {
-
-    color: #fff;
-    font-size: 2.3rem;
+    color: white;
+    font-weight: bold;
+    font-size: 2.4rem;
     text-align: center;
-
 }
 
-
+/*INPUTS*/
 .inputContenedor {
     position: relative;
-    margin: 30px 0;
+    margin: 30px auto;
     width: 300px;
     border-bottom: 2px solid #fff;
     margin: 20px;
 }
-
 
 .inputContenedor label {
     position: absolute;
     top: 20%;
     left: 10px;
     transform: translateY(-50%);
-    color: #fff;
-    font-size: 1rem;
+    color: white;
+    font-size: 1.5rem;
     pointer-events: none;
     transition: .6s;
     font-weight: bold;
 }
-
 
 .inputContenedor input:focus~label,
 input:valid~label {
     top: -10px;
 }
 
+/*Pseudo-clases para formularios*/
 .inputContenedor input:invalid {
-    border: 2px solid red;
+    border-bottom: 3px solid red;
     border-radius: 20px;
 }
 
 .inputContenedor input:valid {
-    border: 2px solid green;
+    border-bottom: 3px solid green;
     background-color: transparent;
     border-radius: 20px;
 }
+
 .inputContenedor input:out-of-range {
-    border: 2px solid orange;
+    border-bottom: 3px solid orange;
     border-radius: 20px;
 }
 
@@ -99,15 +105,15 @@ input:valid~label {
     outline: none;
     font-size: 1rem;
     padding: - 35px 0 20px;
-    color: #fff;
+    color: white;
 }
 
 .inputContenedor i {
-    position: absolute;
-    color: #fff;
+    position: relative;
+    color: black;
     font-size: 1.6rem;
-    top: 19px;
-    right: 8px;
+    top: 30px;
+    right: 50px;
 }
 
 .olvidar {
@@ -133,8 +139,18 @@ input:valid~label {
     text-decoration: underline;
 }
 
-#loginButton {
+/*Seccion de acceder [boton acceder y registrarse]*/
+.sectionAccess {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#loginButton {
+    width: 50%;
     height: 45px;
     border-radius: 40px;
     background: #fff;
@@ -150,6 +166,8 @@ input:valid~label {
 }
 
 .registrar {
+    width: 100%;
+    display: inline-block;
     margin: 20px 0 10px;
     font-size: .9em;
     color: #fff;
