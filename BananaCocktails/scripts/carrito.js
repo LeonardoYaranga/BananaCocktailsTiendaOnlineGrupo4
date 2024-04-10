@@ -1,15 +1,98 @@
-//Variable que mantiene el estado visible del carrito
-var carritoVisible = false;
 
+   
+   
 //Espermos que todos los elementos de la pàgina cargen para ejecutar el script
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
-    ready();
+   
+   // Cargar productos desde el archivo JSON
+    fetch('./Database/productos.json')
+      .then(response => response.json())
+      .then(data => {
+        renderizarProductos(data);
+        ready();
+      })
+      .catch(error => console.error('Error al cargar productos:', error));
+
+    // Función para renderizar los productos
+    function renderizarProductos(productos) {
+      const catalogoContainer = document.getElementById('catalogo-container');
+      let seccionActual = null;
+      let seccionActualElement = null;
+
+      productos.forEach(producto => {
+        const { nombre, descripcion, section, precio, imagen } = producto;
+
+        // Verificar si la sección actual es diferente a la sección del producto actual
+        if (seccionActual !== section) {
+          // Si es diferente, cerrar la sección anterior (si existe)
+          if (seccionActualElement !== null) {
+            catalogoContainer.appendChild(seccionActualElement);
+          }
+
+          const nuevoTitulo = document.createElement('h2');
+          nuevoTitulo.id = section.toLowerCase();
+          nuevoTitulo.className = 'contenedor-items';
+          nuevoTitulo.textContent = section;
+
+          catalogoContainer.appendChild(nuevoTitulo);
+
+          // Abrir una nueva sección con la clase correspondiente
+          seccionActualElement = document.createElement('section');
+          seccionActualElement.className = `wrap ${section}`;
+
+
+
+          // Actualizar la variable de sección actual
+          seccionActual = section;
+        }
+
+        // Imprimir el contenido del producto
+        const nuevoProducto = document.createElement('article');
+        nuevoProducto.className = 'tarjeta tarjetaAnimada item';
+
+        nuevoProducto.innerHTML = `
+      <section class="face front">
+        <img src="./Images/${section}/${imagen}" alt="${nombre}" class="img-item">
+        <section class="wrap-text_tarjeta">
+          <article class="precio_tarjeta">
+            <span class="precio-item">${precio}$</span>
+          </article>
+          <span class="titulo-item">${nombre}</span>
+        </section>
+      </section>
+      <section class="face back">
+        <section class="wrap-text_tarjeta">
+          <span class="titulo-item">${nombre}</span>
+          <p>${descripcion}</p>
+          <section class="cta-wrap_tarjeta">
+            <article class="precio_tarjeta">
+              <span class="precio-item">${precio}$</span>
+            </article>
+            <article class="cta_tarjeta">
+              <button class="boton-item" onclick="openAside()">Agregar al Carrito</button>
+            </article>
+          </section>
+        </section>
+      </section>
+    `;
+
+        seccionActualElement.appendChild(nuevoProducto);
+      });
+
+      // Cerrar la última sección (si existe)
+      if (seccionActualElement !== null) {
+        catalogoContainer.appendChild(seccionActualElement);
+      }
+    }
 }
+//Variable que mantiene el estado visible del carrito
+var carritoVisible = false;
+
 
 function ready() {
-
+    alert("El DOM ha cargado");
     //Agregremos funcionalidad a los botones eliminar del carrito
     var botonesEliminarItem = document.getElementsByClassName('btn-eliminar');
     for (var i = 0; i < botonesEliminarItem.length; i++) {
@@ -34,6 +117,7 @@ function ready() {
     //Agregamos funcionalidad al boton Agregar al carrito
     var botonesAgregarAlCarrito = document.getElementsByClassName('boton-item');
     for (var i = 0; i < botonesAgregarAlCarrito.length; i++) {
+        console.log("Boton agregar al carrito");
         var button = botonesAgregarAlCarrito[i];
         button.addEventListener('click', agregarAlCarritoClicked);
     }
@@ -112,7 +196,7 @@ function agregarAlCarritoClicked(event){
 function agregarAlCarritoClicked(event) {
     var button = event.target;
     var item = button.closest('.item'); // Busca el elemento padre con la clase 'item'
-    
+
     // Obtener datos de la tarjeta
     var titulo = item.querySelector('.titulo-item').innerText;
     var precio = item.querySelector('.precio-item').innerText;
@@ -131,7 +215,7 @@ function hacerVisibleCarrito() {
     carrito.style.opacity = '1';
 
     // Encuentra el contenedor de la sección actual
-    var seccionActual = document.querySelector('.wrap.vodka'); 
+    var seccionActual = document.querySelector('.wrap.vodka');
 
     if (seccionActual) {
         seccionActual.style.width = '60%';
